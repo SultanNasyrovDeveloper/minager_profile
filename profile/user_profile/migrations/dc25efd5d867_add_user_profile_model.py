@@ -25,7 +25,7 @@ def upgrade() -> None:
     op.create_table(
         "userprofile",
         sa.Column(
-            "user_id", sqlmodel.sql.sqltypes.AutoString(length=30), nullable=False
+            "user_id", sqlmodel.sql.sqltypes.AutoString(length=50), nullable=False
         ),
         sa.Column(
             "last_name", sqlmodel.sql.sqltypes.AutoString(length=50), nullable=False

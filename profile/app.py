@@ -3,11 +3,12 @@ from profile.settings import ApplicationSettings
 from profile.user_profile.api import router as user_profile_router
 
 from fastapi import APIRouter, FastAPI
-from sqlalchemy.ext.asyncio import create_async_engine
+from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 
 app = FastAPI()
 settings = ApplicationSettings()
-db = create_async_engine(make_database_url(settings.db), echo=True)
+engine = create_async_engine(make_database_url(settings.db), echo=True)
+db = async_sessionmaker(engine)
 app.state.db = db
 
 v1_router = APIRouter(prefix="/api/v1")

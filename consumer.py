@@ -3,6 +3,7 @@ import json
 from profile.app import db, settings
 from profile.core.amqp.tester import AsyncAMQPConnectionTester
 from profile.logger import get_logger
+from profile.user_profile.models import UserProfile
 
 import aio_pika
 from aio_pika.exchange import ExchangeType
@@ -15,6 +16,9 @@ async def handler(message: aio_pika.abc.AbstractIncomingMessage):
         body = json.loads(message.body)
         if body["type"] == "SEND_VERIFY_EMAIL":
             user_id = body["userId"]
+            new_user = UserProfile(user_id=user_id)
+            async with db.begin() as session:
+                session.add(new_user)
             logger.info(f"New user created: ID={user_id}...")
 
 
