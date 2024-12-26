@@ -1,7 +1,7 @@
+from profile.core.utils import make_database_url
 from profile.settings import ApplicationSettings
 from profile.user_profile.api import router as user_profile_router
 
-from core.utils import make_database_url
 from fastapi import APIRouter, FastAPI
 from sqlalchemy.ext.asyncio import create_async_engine
 

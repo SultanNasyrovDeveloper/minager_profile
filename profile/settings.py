@@ -56,7 +56,7 @@ class ApplicationSettings(BaseSettings):
     debug: bool = False
     db: DBConnection
     user_events_routing_key: str
-    user_events_queue: AMQPConfig
+    user_events: AMQPConfig
     logging: LoggingConfig = LoggingConfig()
 
     model_config = SettingsConfigDict(
