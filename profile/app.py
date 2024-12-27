@@ -8,7 +8,7 @@ from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 app = FastAPI()
 settings = ApplicationSettings()
 engine = create_async_engine(make_database_url(settings.db), echo=True)
-db = async_sessionmaker(engine)
+db = async_sessionmaker(engine, expire_on_commit=False)
 app.state.db = db
 
 v1_router = APIRouter(prefix="/api/v1")
