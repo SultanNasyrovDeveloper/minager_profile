@@ -46,7 +46,6 @@ class LoggingConfig(BaseSettings):
 
     def to_basic_config(self) -> dict:
         return {
-            "version": 1,
             "level": self.level,
             "format": self.format,
             # 'datefmt': self.datetime_format
